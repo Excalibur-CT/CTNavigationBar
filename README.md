@@ -1,5 +1,4 @@
 # CTNavigationBar
 导航条
 
-[![Platform](https://img.shields.io/cocoapods/p/AFMInfoBanner.svg?style=flat)]
-
+[src=https://github.com/Excalibur-CT/CTNavigationBar/blob/master/00002.gif]
