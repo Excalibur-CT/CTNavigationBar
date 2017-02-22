@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		84020F221E07A6DA0011B73C /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 84020F211E07A6DA0011B73C /* UINavigationController+FDFullscreenPopGesture.m */; };
 		84020F251E07C7B00011B73C /* EditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84020F241E07C7B00011B73C /* EditController.m */; };
+		84473DC71E5D36A100058BE6 /* GradController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84473DC61E5D36A100058BE6 /* GradController.m */; };
 		84C31D0B1E063D8300BCE0B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31D0A1E063D8300BCE0B4 /* main.m */; };
 		84C31D0E1E063D8300BCE0B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31D0D1E063D8300BCE0B4 /* AppDelegate.m */; };
 		84C31D111E063D8300BCE0B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C31D101E063D8300BCE0B4 /* ViewController.m */; };
@@ -24,6 +25,8 @@
 		84020F211E07A6DA0011B73C /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		84020F231E07C7B00011B73C /* EditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditController.h; sourceTree = "<group>"; };
 		84020F241E07C7B00011B73C /* EditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditController.m; sourceTree = "<group>"; };
+		84473DC51E5D36A100058BE6 /* GradController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradController.h; sourceTree = "<group>"; };
+		84473DC61E5D36A100058BE6 /* GradController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradController.m; sourceTree = "<group>"; };
 		84C31D061E063D8300BCE0B4 /* CTNavigationBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTNavigationBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C31D0A1E063D8300BCE0B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84C31D0C1E063D8300BCE0B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				84C31D281E0667D200BCE0B4 /* TranslationController.m */,
 				84020F231E07C7B00011B73C /* EditController.h */,
 				84020F241E07C7B00011B73C /* EditController.m */,
+				84473DC51E5D36A100058BE6 /* GradController.h */,
+				84473DC61E5D36A100058BE6 /* GradController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				84C31D221E063DA100BCE0B4 /* CTNavigationBar.m in Sources */,
 				84C31D261E0664DF00BCE0B4 /* AlphaController.m in Sources */,
 				84C31D111E063D8300BCE0B4 /* ViewController.m in Sources */,
+				84473DC71E5D36A100058BE6 /* GradController.m in Sources */,
 				84C31D291E0667D200BCE0B4 /* TranslationController.m in Sources */,
 				84C31D0E1E063D8300BCE0B4 /* AppDelegate.m in Sources */,
 				84020F251E07C7B00011B73C /* EditController.m in Sources */,

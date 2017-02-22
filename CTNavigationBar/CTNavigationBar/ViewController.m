@@ -23,6 +23,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.dataAry = @[@{@"title":@"改变bar透明度",@"action":@"AlphaController"},
                      @{@"title":@"改变bar偏移量",@"action":@"TranslationController"},
+                     @{@"title":@"改变Bar的颜色",@"action":@"GradController"},
                      @{@"title":@"编辑",@"action":@"EditController"}];
     [self.view addSubview:self.tableView];
     self.title = @"NavigationBar";

@@ -61,13 +61,44 @@
 - (instancetype)initWithHeight:(CGFloat)height
                          title:(NSString *)title;
 
+/*
+ *  改变导航条透明度
+ *  param maxOffseY  导航条透明度变为1 时, scrollview (或者其子类) 最大偏移量 (contentOffSet.y)
+ */
+- (void)ct_barAlphaDidScroll:(UIScrollView *)scrollView
+                  maxOffsetY:(CGFloat)offSetY;
 
 - (void)ct_barAlphaDidScroll:(UIScrollView *)scrollView
-                   maxOffseY:(CGFloat)offSetY;
+                  maxOffsetY:(CGFloat)offSetY
+               progressBlock:(void (^)(CTNavigationBar * bar, CGFloat ratio))block;
 
-
+/*
+ *  改变导航条高度, 最终变为0
+ *  param originalSize  scrollview (或者其子类)初始化时的高度
+ */
 - (void)ct_translationDidScroll:(UIScrollView *)scrollView
-                  tableViewSize:(CGSize)zize;
+                   originalSize:(CGSize)size;
+
+/*
+ *  改变颜色, 实现从一个颜色渐变过渡到另一个颜色
+ *  param  toColor  导航条最终显示颜色
+ *  param  offSetY  导航条渐变到ToColor时, scrollview (或者其子类) 最大偏移量 (contentOffSet.y)
+ */
+- (void)ct_colorGradDidScroll:(UIScrollView *)scrollView
+                      toColor:(UIColor *)color
+                   maxOffSetY:(CGFloat)offSetY;
+
+/*
+ *  改变颜色, 实现从一个颜色渐变过渡到另一个颜色
+ *  param  toColor  导航条最终显示颜色
+ *  param  offSetY  导航条渐变到ToColor时, scrollview (或者其子类) 最大偏移量 (contentOffSet.y)
+ *  param  block     进度Block
+ *
+ */
+- (void)ct_colorGradDidScroll:(UIScrollView *)scrollView
+                      toColor:(UIColor *)color
+                   maxOffSetY:(CGFloat)offSetY
+                progressBlock:(void (^)(CTNavigationBar * bar, CGFloat ratio))block;
 
 
 - (void)ct_addLeftButtonItem:(UIBarButtonItem *)item;

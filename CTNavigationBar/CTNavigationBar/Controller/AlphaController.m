@@ -32,7 +32,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.navigationBar ct_barAlphaDidScroll:scrollView maxOffseY:64];
+    [self.navigationBar ct_barAlphaDidScroll:scrollView maxOffsetY:64];
 }
 
 

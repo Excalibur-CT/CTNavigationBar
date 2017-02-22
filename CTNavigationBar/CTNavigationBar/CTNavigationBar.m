@@ -130,8 +130,19 @@ const CGFloat k_NavigationBar_Height = 64.0f;
 }
 
 - (void)ct_barAlphaDidScroll:(UIScrollView *)scrollView
-                   maxOffseY:(CGFloat)maxY
+                  maxOffsetY:(CGFloat)maxY
 {
+    [self ct_barAlphaDidScroll:scrollView maxOffsetY:maxY progressBlock:nil];
+}
+
+- (void)ct_barAlphaDidScroll:(UIScrollView *)scrollView
+                  maxOffsetY:(CGFloat)maxY
+               progressBlock:(void (^)(CTNavigationBar * bar, CGFloat ratio))block
+{
+    if (![scrollView isKindOfClass:[UIScrollView class]])
+    {
+        return;
+    }
     maxY = fminf(140,fmaxf(maxY, 84));
     CGFloat offsetY = scrollView.contentOffset.y - 20;
     if (offsetY >= maxY)
@@ -146,13 +157,20 @@ const CGFloat k_NavigationBar_Height = 64.0f;
     {
         self.barAlpha = 0;
     }
+    if (block) {
+        block(self, self.barAlpha);
+    }
 }
 
 #pragma mark - Translation -
 
 - (void)ct_translationDidScroll:(UIScrollView *)scrollView
-                  tableViewSize:(CGSize)zize;
+                   originalSize:(CGSize)size;
 {
+    if (![scrollView isKindOfClass:[UIScrollView class]])
+    {
+        return;
+    }
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 0)
     {
@@ -161,7 +179,7 @@ const CGFloat k_NavigationBar_Height = 64.0f;
             self.transform = CGAffineTransformMakeTranslation(0, -44);
             [self adjustLeftRightViewsWithAlpha:0];
             ((UIView *)[self valueForKey:@"_titleView"]).alpha = 0;
-            [self adjustFrameOfScrollView:scrollView size:zize offsetY:44];
+            [self adjustFrameOfScrollView:scrollView size:size offsetY:44];
         }
         else
         {
@@ -169,7 +187,7 @@ const CGFloat k_NavigationBar_Height = 64.0f;
             CGFloat alpha = (1-offsetY/44.0f);
             [self adjustLeftRightViewsWithAlpha:alpha];
             ((UIView *)[self valueForKey:@"_titleView"]).alpha = alpha;
-            [self adjustFrameOfScrollView:scrollView size:zize offsetY:offsetY];
+            [self adjustFrameOfScrollView:scrollView size:size offsetY:offsetY];
         }
     }
     else
@@ -177,10 +195,67 @@ const CGFloat k_NavigationBar_Height = 64.0f;
         self.transform = CGAffineTransformMakeTranslation(0, 0);
         [self adjustLeftRightViewsWithAlpha:1];
         ((UIView *)[self valueForKey:@"_titleView"]).alpha = 1;
-        [self adjustFrameOfScrollView:scrollView size:zize offsetY:0];
+        [self adjustFrameOfScrollView:scrollView size:size offsetY:0];
     }
 }
 
+- (void)ct_colorGradDidScroll:(UIScrollView *)scrollView
+                      toColor:(UIColor *)color
+                   maxOffSetY:(CGFloat)offSetY
+{
+    [self ct_colorGradDidScroll:scrollView toColor:color maxOffSetY:offSetY progressBlock:nil];
+}
+
+- (void)ct_colorGradDidScroll:(UIScrollView *)scrollView
+                      toColor:(UIColor *)color
+                   maxOffSetY:(CGFloat)offSetY
+                progressBlock:(void (^)(CTNavigationBar * bar, CGFloat ratio))block
+{
+    if (![scrollView isKindOfClass:[UIScrollView class]])
+    {
+        return;
+    }
+    CGFloat offY = scrollView.contentOffset.y;
+    CGFloat ratio = offY / offSetY;
+    UIColor * bckColor = [self colorFrom:self.backgroundColor toColor:color ratio:ratio];
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isMemberOfClass:NSClassFromString(@"_UIBarBackground")])
+        {
+            obj.backgroundColor = bckColor;
+        }
+    }];
+    if (block) {
+        block(self, ratio);
+    }
+}
+
+- (UIColor *)colorFrom:(UIColor *)fromColor toColor:(UIColor *)toColor ratio:(CGFloat)ratio
+{
+    if (ratio <= 0)
+    {
+        return fromColor;
+    }
+    else if (ratio >=1 )
+    {
+        return toColor;
+    }
+    else
+    {
+        CGFloat o_r, o_g , o_b, o_a;
+        CGFloat t_r, t_g , t_b, t_a;
+        CGFloat r_r, r_g , r_b, r_a;
+        
+        [fromColor getRed:&o_r green:&o_g blue:&o_b alpha:&o_a];
+        [toColor   getRed:&t_r green:&t_g blue:&t_b alpha:&t_a];
+        
+        r_r = o_r + (t_r - o_r)*ratio;
+        r_g = o_g + (t_g - o_g)*ratio;
+        r_b = o_b + (t_b - o_b)*ratio;
+        r_a = o_a + (t_a - o_a)*ratio;
+
+        return [UIColor colorWithRed:r_r green:r_g blue:r_b alpha:r_a];
+    }
+}
 #pragma mark - barButtonItem -
 - (void)ct_addLeftButtonItem:(UIBarButtonItem *)item
 {

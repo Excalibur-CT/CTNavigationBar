@@ -34,7 +34,7 @@
 {
     CGSize size = [[UIScreen mainScreen] bounds].size;
     [self.navigationBar ct_translationDidScroll:scrollView
-                                  tableViewSize:CGSizeMake(size.width, size.height-64)];
+                                  originalSize:CGSizeMake(size.width, size.height-64)];
 }
 
 #pragma mark - Table view data source
