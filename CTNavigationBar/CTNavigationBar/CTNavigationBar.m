@@ -70,6 +70,7 @@ const CGFloat k_NavigationBar_Height = 64.0f;
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     self = [super initWithFrame:CGRectMake(0, 0, screenSize.width, height)];
     if (self) {
+        self.title = title;
         [self setDefaultConfig];
     }
     return self;
@@ -81,6 +82,19 @@ const CGFloat k_NavigationBar_Height = 64.0f;
 {
     [super layoutSubviews];
     [self adjustBarBackgroundColor];
+}
+
+- (void)setTitleColor:(UIColor *)titleColor
+{
+    if (titleColor != nil)
+    {
+        NSMutableDictionary * dict = [@{} mutableCopy];
+        if (self.titleTextAttributes) {
+            [dict addEntriesFromDictionary:self.titleTextAttributes];
+        }
+        [dict addEntriesFromDictionary:@{NSForegroundColorAttributeName:titleColor}];
+        self.titleTextAttributes = dict;
+    }
 }
 
 #pragma mark - private method -
@@ -314,8 +328,6 @@ const CGFloat k_NavigationBar_Height = 64.0f;
 }
 
 - (void)ct_setLeftButtonItem:(void (^)(UIBarButtonItem * item))itemBlock
-                      target:(id)target
-                      action:(SEL)action
 {
     UIBarButtonItem * barItem = [[UIBarButtonItem alloc] init];
     barItem.style = UIBarButtonItemStylePlain;
@@ -327,8 +339,6 @@ const CGFloat k_NavigationBar_Height = 64.0f;
 }
 
 - (void)ct_setRightButtonItem:(void (^)(UIBarButtonItem * item))itemBlock
-                       target:(id)target
-                       action:(SEL)action
 {
     UIBarButtonItem * barItem = [[UIBarButtonItem alloc] init];
     barItem.style = UIBarButtonItemStylePlain;

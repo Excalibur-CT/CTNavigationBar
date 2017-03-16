@@ -31,6 +31,11 @@
 @property (nonatomic, copy) NSString * title;
 
 /*
+ *  set the bar title color
+ */
+@property (nonatomic, copy) UIColor * titleColor;
+
+/*
  *  set the left Navigationbar button item
  */
 @property (nonatomic, readwrite)UIBarButtonItem * leftBarButtonItem;
@@ -108,12 +113,9 @@
 
 
 - (void)ct_setLeftButtonItem:(void (^)(UIBarButtonItem * item))itemBlock
-                      target:(id)target
-                      action:(SEL)action;
 
 - (void)ct_setRightButtonItem:(void (^)(UIBarButtonItem * item))itemBlock
-                       target:(id)target
-                       action:(SEL)action;
+
 
 
 
